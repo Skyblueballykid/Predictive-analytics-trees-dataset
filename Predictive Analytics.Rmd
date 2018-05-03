@@ -1,0 +1,104 @@
+---
+title: "Predictive Analytics"
+output:
+  word_document: default
+  pdf_document: default
+  html_document: default
+---
+#### Thomas Kalnik
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### For this project, I chose to evaluate one of the included R datasets, this dataset is called the 'Trees' Dataset and includes data on the girth, height and volume on a sample of 31 trees. This dataset is appealing to me because this dataset is designed for predictive analytics, thus a simple linear regression of the data results in one highly correlated predictive variable (girth) and one variable that is much less correlated (height). 
+####  This dataset is also interesting to me for a few other reasons. The dataset is composed of just 31 observations and 3 features which makes it straightforward and easy to work with. The data also features a significant predictor value (girth), which ensures results that are interesting, signficant and predictive. Finally, I am new to using the R programming language and R studio development environment and using R for this assignment allows me to gain more experience which will carry over to another course I am taking, Introduction to Data Mining and Machine Learning. If I have time, I may try to apply several machine learning techniques to this data set to generate additional insight. 
+
+
+##_Trees Dataset_
+```{r, echo=FALSE}
+trees
+Girth <- trees$Girth
+Height <- trees$Height
+Volume <- trees$Volume
+```
+
+##_Descriptive Statistics of the Data_
+```{r, echo=FALSE}
+summary(trees)
+```
+
+##_Scatterplot Graphs_
+```{r,echo=FALSE}
+plot(trees)
+```
+
+#Height vs Volume
+```{r, echo = FALSE}
+plot(Height, Volume)
+```
+
+#Volume vs Girth
+```{r, echo = FALSE}
+plot(Volume, Girth)
+```
+
+#Correlation of the dataset
+```{r, echo = FALSE}
+cor(trees)
+```
+
+#Covariance of the dataset
+```{r, echo=FALSE}
+cov(trees)
+```
+
+#Linear model - Volume, Girth
+```{r, echo = FALSE}
+model1 = lm(Volume ~ Girth)
+summary(model1)
+```
+
+###ANOVA Table for Volume/Girth Regression
+```{r, echo=FALSE}
+summary.aov(model1)
+```
+
+```{r, echo = FALSE}
+plot(model1)
+```
+
+#Linear model - Volume, Height
+```{r, echo = FALSE}
+model2 = lm(Volume ~ Height)
+summary(model2)
+```
+
+###ANOVA Table for Volume/Height Regression
+```{r, echo=FALSE}
+summary.aov(model2)
+```
+
+```{r, echo = FALSE}
+plot(model2)
+```
+
+#Multiple Regression model - Volume and Height, Girth
+```{r, echo = FALSE}
+model3 = lm(Volume ~ Girth + Height)
+summary(model3)
+```
+
+###ANOVA Table for Volume/Height Regression
+```{r, echo=FALSE}
+summary.aov(model3)
+```
+
+```{r, echo = FALSE}
+plot(model3)
+```
+
+####The preliminary results are interesting. We find that girth is significantly correlated with the volume of our dataset and a significant predictor of total tree volume (at least in this sample). The girth feature displays a correlation of 0.967 with the volume feature, height displays a much lower correlation of 0.519. The simple regression of girth as a predictor and volume as a response variable returns an R^2 of 0.9353, compared with an R^2 of just 0.3579  when we regress height against volume. Further, our t-statistic for the girth model is 20.48, and our p-value is less than 2e-16 implying significance at the 99% level. 
+####  The height model also shows a significant t-stat and p-value, 4.021 and 0.000378, which also implies significance at the 99% level. These results leave me somewhat puzzled, as height as a predictor variable displays a low R^2 measure. 
+####  Perhaps the most interesting preliminary result is the output of the multiple regression model, where both height and girth are used as predictor variables. In this case, it appears that the addition of the height variable improves the girth model, although not by much (R^2 of 0.948 for the multiple regression model vs 0.9353 for the girth model). However, height displays a much lower t-stat and p-value than the girth predictor variable (2.607 t-stat and 0.0145 p-value), although still significant at the 95% level.
+####  Is the multiple regression model superior to the girth model alone for predicting tree volume? This remains to be seen and will be an avenue of further exploration for the final assignment submission. 
