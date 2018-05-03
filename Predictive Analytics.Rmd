@@ -15,7 +15,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ####  This dataset is also interesting to me for a few other reasons. The dataset is composed of just 31 observations and 3 features which makes it straightforward and easy to work with. The data also features a significant predictor value (girth), which ensures results that are interesting, signficant and predictive. 
 
 
-##_Trees Dataset_
+## _Trees Dataset_
 ```{r, echo=FALSE}
 trees
 Girth <- trees$Girth
@@ -23,27 +23,27 @@ Height <- trees$Height
 Volume <- trees$Volume
 ```
 
-##_Descriptive Statistics of the Data_
+## _Descriptive Statistics of the Data_
 ```{r, echo=FALSE}
 summary(trees)
 ```
 
-##_Scatterplot Graphs_
+## _Scatterplot Graphs_
 ```{r,echo=FALSE}
 plot(trees)
 ```
 
-#Height vs Volume
+# Height vs Volume
 ```{r, echo = FALSE}
 plot(Height, Volume)
 ```
 
-#Volume vs Girth
+# Volume vs Girth
 ```{r, echo = FALSE}
 plot(Volume, Girth)
 ```
 
-#Correlation of the dataset
+# Correlation of the dataset
 ```{r, echo = FALSE}
 cor(trees)
 ```
@@ -53,13 +53,13 @@ cor(trees)
 cov(trees)
 ```
 
-#Linear model - Volume, Girth
+# Linear model - Volume, Girth
 ```{r, echo = FALSE}
 model1 = lm(Volume ~ Girth)
 summary(model1)
 ```
 
-###ANOVA Table for Volume/Girth Regression
+### ANOVA Table for Volume/Girth Regression
 ```{r, echo=FALSE}
 summary.aov(model1)
 ```
@@ -68,13 +68,13 @@ summary.aov(model1)
 plot(model1)
 ```
 
-#Linear model - Volume, Height
+# Linear model - Volume, Height
 ```{r, echo = FALSE}
 model2 = lm(Volume ~ Height)
 summary(model2)
 ```
 
-###ANOVA Table for Volume/Height Regression
+### ANOVA Table for Volume/Height Regression
 ```{r, echo=FALSE}
 summary.aov(model2)
 ```
@@ -83,13 +83,13 @@ summary.aov(model2)
 plot(model2)
 ```
 
-#Multiple Regression model - Volume and Height, Girth
+# Multiple Regression model - Volume and Height, Girth
 ```{r, echo = FALSE}
 model3 = lm(Volume ~ Girth + Height)
 summary(model3)
 ```
 
-###ANOVA Table for Volume/Height Regression
+### ANOVA Table for Volume/Height Regression
 ```{r, echo=FALSE}
 summary.aov(model3)
 ```
@@ -98,6 +98,6 @@ summary.aov(model3)
 plot(model3)
 ```
 
-####The preliminary results are interesting. We find that girth is significantly correlated with the volume of our dataset and a significant predictor of total tree volume (at least in this sample). The girth feature displays a correlation of 0.967 with the volume feature, height displays a much lower correlation of 0.519. The simple regression of girth as a predictor and volume as a response variable returns an R^2 of 0.9353, compared with an R^2 of just 0.3579  when we regress height against volume. Further, our t-statistic for the girth model is 20.48, and our p-value is less than 2e-16 implying significance at the 99% level. 
-####The height model also shows a significant t-stat and p-value, 4.021 and 0.000378, which also implies significance at the 99% level.
-####Perhaps the most interesting preliminary result is the output of the multiple regression model, where both height and girth are used as predictor variables. In this case, it appears that the addition of the height variable improves the girth model, although not by much (R^2 of 0.948 for the multiple regression model vs 0.9353 for the girth model). However, height displays a much lower t-stat and p-value than the girth predictor variable (2.607 t-stat and 0.0145 p-value), although still significant at the 95% level.
+#### The preliminary results are interesting. We find that girth is significantly correlated with the volume of our dataset and a significant predictor of total tree volume (at least in this sample). The girth feature displays a correlation of 0.967 with the volume feature, height displays a much lower correlation of 0.519. The simple regression of girth as a predictor and volume as a response variable returns an R^2 of 0.9353, compared with an R^2 of just 0.3579  when we regress height against volume. Further, our t-statistic for the girth model is 20.48, and our p-value is less than 2e-16 implying significance at the 99% level. 
+#### The height model also shows a significant t-stat and p-value, 4.021 and 0.000378, which also implies significance at the 99% level.
+#### Perhaps the most interesting preliminary result is the output of the multiple regression model, where both height and girth are used as predictor variables. In this case, it appears that the addition of the height variable improves the girth model, although not by much (R^2 of 0.948 for the multiple regression model vs 0.9353 for the girth model). However, height displays a much lower t-stat and p-value than the girth predictor variable (2.607 t-stat and 0.0145 p-value), although still significant at the 95% level.
